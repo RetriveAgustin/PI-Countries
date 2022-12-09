@@ -1,15 +1,9 @@
 const { Router } = require("express");
 const countriesRouter = Router();
+const { getCountries, getCountry } = require("../controllers/countriesController");
 
-countriesRouter.get("/", (req, res) => {
-  res
-    .status(200)
-    .send("NOT IMPLEMENTED YET: Get all countries / get countries by name");
-});
+countriesRouter.get("/", getCountries);
 
-countriesRouter.get("/:id", (req, res) => {
-  const { id } = req.params;
-  res.status(200).send(`NOT IMPLMENTED YET: get country by ID: ${id}`);
-});
+countriesRouter.get("/:id", getCountry);
 
 module.exports = countriesRouter;
