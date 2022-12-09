@@ -1,12 +1,11 @@
 const { Router } = require("express");
 const activitiesRouter = Router();
+const { createActivity, getActivities, findActivity } = require("../controllers/activitiesController");
 
-activitiesRouter.get("/", (req, res) => {
-    res.status("200").send("NOT IMPLEMENTED YET: get all activities / get activities by name");
-})
+activitiesRouter.get("/", getActivities);
 
-activitiesRouter.post("/", (req, res) => {
-    res.status("200").send("NOT IMPMENTED YET: create an activity")
-})
+activitiesRouter.post("/", createActivity);
+
+activitiesRouter.get("/:id", findActivity);
 
 module.exports = activitiesRouter;
