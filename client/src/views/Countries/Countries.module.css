@@ -1,0 +1,15 @@
+.container {
+    background-color: #2c895f32;
+    border-radius: 15px;
+    border: 1px solid #171717;
+    width: 95vw;
+    height: 750px;
+    margin: auto auto;
+    margin-top: 25px
+}
+
+.container h2 {
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
