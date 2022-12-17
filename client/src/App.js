@@ -14,7 +14,7 @@ function App() {
       <Route path="/" component={NavBar} />
       <Route exact path="/" component={Home} />
       <Route exact path="/countries" component={Countries} />
-      <Route exact path="/country" component={Country} />
+      <Route exact path="/countries/:id" component={Country} />
       <Route exact path="/activities" component={Activities} />
       <Route exact path="/activity" component={Activity} />
       <Route exact path="/new-activity" component={NewActivity} />

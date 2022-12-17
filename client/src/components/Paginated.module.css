@@ -1,0 +1,28 @@
+.paginate {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    /* background-color: red; */
+}
+
+.paginate button {
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28313a;
+    color: #EAEAEA;
+    cursor: pointer;
+    border: 1px solid #C3B388;
+}
+
+.paginate button:hover {
+    background-color: #37353a;
+}
+
+.page {
+    background-color: #171717;
+    color: #EAEAEA;
+    padding: 5px 13px 5px 13px;
+    border-radius: 5px;
+    border: 1px solid #EAEAEA;
+}

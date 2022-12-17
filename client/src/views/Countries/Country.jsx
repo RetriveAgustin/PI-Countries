@@ -1,6 +1,8 @@
 const Country = (props) => {
   return (
-    <div className="countryContainer"></div>
+    <div className="countryContainer">
+      <p>This is a country</p>
+    </div>
   );
 };
 

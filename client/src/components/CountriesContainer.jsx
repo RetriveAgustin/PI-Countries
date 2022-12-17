@@ -1,16 +1,8 @@
 import style from "./CountriesContainer.module.css";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../redux/actions";
 import Card from "./Card";
 
-const CountriesContainer = () => {
-  const countries = useSelector((state) => state.countries);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCountries());
-  }, []);
+const CountriesContainer = ({countries}) => {
+  
 
   return (
     <div className={style.container}>

@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export const GET_COUNTRIES = "GET_COUNTRIES";
 
 export const getCountries = () => {

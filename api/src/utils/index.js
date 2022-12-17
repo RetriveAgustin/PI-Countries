@@ -52,22 +52,26 @@ const getAllCountries = async () => {
 };
 
 const findCountries = async (name) => {
-  apiResults = await axios.get(`https://restcountries.com/v3/name/${name}`);
-  const apiCountries = apiResults.data.map((country) => {
-    return {
-      id: country.cca3,
-      name: country.name.common,
-      official_name: country.name.official,
-      flag: country.flags[0],
-      continent: country.continents,
-      capital: country.capital,
-      subregion: country.subregion,
-      area: country.area,
-      population: country.population,
-      origin: "api",
-    };
-  });
-  return apiCountries;
+  try{
+    apiResults = await axios.get(`https://restcountries.com/v3/name/${name}`);
+    const apiCountries = apiResults.data.map((country) => {
+      return {
+        id: country.cca3,
+        name: country.name.common,
+        official_name: country.name.official,
+        flag: country.flags[0],
+        continent: country.continents,
+        capital: country.capital,
+        subregion: country.subregion,
+        area: country.area,
+        population: country.population,
+        origin: "api",
+      };
+    });
+    return apiCountries;
+  } catch (err) {
+    return "this country does not exist";
+  }
 };
 
 const findCountry = async (id) => {
