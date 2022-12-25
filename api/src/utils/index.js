@@ -84,7 +84,7 @@ const findCountry = async (id) => {
       },
     ],
   });
-  return country;
+  return country[0];
 };
 
 const getAllActivities = async () => {

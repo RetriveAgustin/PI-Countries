@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    margin-top: 25px;
+    width: 95%;
+    border-radius: 15px;
+    border: 3px solid #171717;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #2c895f32;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+}
+.card img {
+    max-width: 100%;
+    max-height: 400px;
+    margin: 10px auto;
+    border-radius: 15px;
+}
+.card h2{
+    margin: 0px;
+    margin-bottom: 5px;
+}
+.card h4{
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.info{
+    margin-top: 50px;
+    text-align: center;
+}
+.info p b{
+    margin-bottom: 2px;
+}

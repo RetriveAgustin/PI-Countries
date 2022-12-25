@@ -1,0 +1,27 @@
+.container{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.input {
+    width: 400px;
+    height: 25px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28313a;
+    color: #EAEAEA;
+    cursor: pointer;
+    border: 1px solid #C3B388;
+}
+
+.btn{
+    background-color: #171717;
+    color: #EAEAEA;
+    border-radius: 5px;
+    border: 1px solid #EAEAEA;
+}
+.btn:hover{
+    background-color: #37353a;
+}
