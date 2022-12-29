@@ -19,8 +19,7 @@ const Countries = () => {
   useEffect(() => {
     dispatch(getCountries(""));
   }, []);
-  
-  
+
   return (
     <div>
       <SearchBar />

@@ -80,7 +80,10 @@ const findCountry = async (id) => {
     include: [
       {
         model: Activity,
-        attributes: ["id", "name", "difficulty", "duration"],
+        attributes: ["id", "name", "difficulty", "duration", "season"],
+        through: {
+          attributes: []
+        }
       },
     ],
   });

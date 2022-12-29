@@ -3,9 +3,9 @@ import style from "./Country.module.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountry } from "../../redux/actions";
+import { NavLink } from "react-router-dom";
 
 const Country = (props) => {
-  console.log(props);
 
   const country = useSelector((state) => state.country);
   const dispatch = useDispatch();
@@ -13,8 +13,6 @@ const Country = (props) => {
   useEffect(() => {
     dispatch(getCountry(props.match.params.id))
   },[])
-
-  console.log(country);
 
   return (
     <div className={style.container}>
@@ -32,6 +30,10 @@ const Country = (props) => {
         <p><b>Continente:</b> {country.continent}</p>
         <p><b>Subregión:</b> {country.subregion}</p>
         <p><b>Población:</b> {country.population}</p>
+      </div>
+
+      <div className={style.actividades}>
+        <NavLink to="/new-activity" > <button>Agregá una actividad</button> </NavLink>
       </div>
     </div>
   );

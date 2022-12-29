@@ -6,7 +6,6 @@ const NavBar = (props) => {
     <p><NavLink className={style.linkText} to="/">Home</NavLink></p>
     <p><NavLink className={style.linkText} to="/countries">Países</NavLink></p>
     <p><NavLink className={style.linkText} to="/activities">Actividades</NavLink></p>
-    <p><NavLink className={style.linkText} to="/new-activity">Añade una Actividad</NavLink></p>
   </div>;
 };
 

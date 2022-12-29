@@ -3,8 +3,8 @@ const { getAllActivities, findActivities } = require("../utils");
 
 const createActivity = async (req, res) => {
   try {
-    const { name, difficulty, duration, country } = req.body;
-    const newActivity = await Activity.create({ name, difficulty, duration });
+    const { name, difficulty, duration, season, country } = req.body;
+    const newActivity = await Activity.create({ name, difficulty, duration, season });
     if (country) await newActivity.addCountry(country);
     res.status(200).json(newActivity);
   } catch (err) {

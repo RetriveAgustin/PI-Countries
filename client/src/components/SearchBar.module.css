@@ -1,10 +1,10 @@
-.container{
+.contenedor{
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.input {
+.buscador {
     width: 400px;
     height: 25px;
     margin: 0 5px;

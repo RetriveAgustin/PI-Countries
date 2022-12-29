@@ -14,8 +14,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     duration: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
     },
+    season: {
+      type: DataTypes.STRING,
+    }
   },
   {
     timestamps: false,
