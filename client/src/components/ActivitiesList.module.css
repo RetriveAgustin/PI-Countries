@@ -1,0 +1,10 @@
+table {
+  background-color: #FCFCFC;
+  border-radius: 5px;
+  width: 100%;
+  /* text-align: center; */
+}
+
+th {
+  text-align: left;
+}

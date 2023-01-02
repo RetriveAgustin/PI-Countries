@@ -13,16 +13,30 @@ const Countries = () => {
   const endPos = page === 1? 9 : (page*10)-1;
   const startPos = endPos - (page===1? 9: 10);
   var countries = useSelector((state) => state.countries);
-  const countriesToShow = countries.slice(startPos, endPos);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(getCountries(""));
   }, []);
-
+  
+  // ORDENADO
+  const [order, setOrder] = useState("asc");
+  
+  if(order === 'asc'){
+    countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
+  }
+  else
+    countries = countries.sort((a,b)=> a.name<b.name? 1:-1);
+  
+  const countriesToShow = countries.slice(startPos, endPos);
   return (
     <div>
-      <SearchBar />
+      <div className={styles.header}>
+        <SearchBar />
+        <p>Orden Alfabético:</p>
+        <button onClick={()=>setOrder("asc")}>Ascendente</button>
+        <button onClick={()=>setOrder("des")}>Descendente</button>
+      </div>
       <div className={styles.container}>
         <h2>Listado de Países</h2>
         <Paginated actualPage={page} setPage={setPage} pages={(countries?.length/9.99)}/>

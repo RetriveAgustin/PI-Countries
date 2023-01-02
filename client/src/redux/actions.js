@@ -43,5 +43,3 @@ export const getCountry = (id) => {
       .catch((err) => console.log(err));
   };
 };
-
-// export const createActivity = ({nombre, dificultad, duracion, pais}) => {};

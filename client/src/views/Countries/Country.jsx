@@ -1,4 +1,5 @@
 import style from "./Country.module.css";
+import ActivitiesList from "../../components/ActivitiesList";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +35,10 @@ const Country = (props) => {
 
       <div className={style.actividades}>
         <NavLink to="/new-activity" > <button>Agregá una actividad</button> </NavLink>
+      </div>
+
+      <div className={style.listaActividades}>
+        <ActivitiesList actividades={country.activities} />
       </div>
     </div>
   );

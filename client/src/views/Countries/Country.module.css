@@ -43,24 +43,28 @@
 }
 
 .actividades button {
-    padding: 10px 30px 10px 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: #28313a;
-    color: #EAEAEA;
-    cursor: pointer;
-    border: 1px solid #C3B388;
-    font-size: 1rem;
-    transition: 0.1s;
+  padding: 10px 30px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28313a;
+  color: #eaeaea;
+  cursor: pointer;
+  border: 1px solid #c3b388;
+  font-size: 1rem;
+  transition: 0.1s;
 }
 
 .actividades button:hover {
-    background-color: #37353a;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: #37353a;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .listaActividades {
+  margin-top: 15px;
   width: 85%;
-  height: 50px;
-  background-color: red;
+  height: fit-content;
+  padding: 20px;
+  border: 1px solid grey;
+  background-color: rgba(255, 255, 255, 0.355);
+  border-radius: 5px;
 }

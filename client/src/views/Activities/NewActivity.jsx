@@ -2,6 +2,7 @@ import style from "./NewActivity.module.css";
 import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const NewActivity = () => {
   const [actividad, setActividad] = useState({
@@ -100,7 +101,8 @@ const NewActivity = () => {
   return (
     <>
       <div className={style.container}>
-        <form onSubmit={submitHandler}>
+      <NavLink to={`countries/${country.id}`} className={style.link}><button className={style.button}>Volver</button></NavLink>
+        <form className={style.form} onSubmit={submitHandler}>
           <div className={style.two_fields}>
             <div className={style.input_field}>
               <label htmlFor="nombre">Nombre </label>
