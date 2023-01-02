@@ -22,10 +22,10 @@ const Countries = () => {
   // ORDENADO
   const [order, setOrder] = useState("asc");
   
-  if(order === 'asc'){
+  if(order === 'asc' && typeof(countries) !== "string"){
     countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
   }
-  else
+  else if(typeof(countries) !== "string")
     countries = countries.sort((a,b)=> a.name<b.name? 1:-1);
   
   const countriesToShow = countries.slice(startPos, endPos);
