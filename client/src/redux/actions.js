@@ -1,6 +1,9 @@
+import axios from "axios";
+
 export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME";
 export const GET_COUNTRY = "GET_COUNTRY";
+export const POST_ACTIVITY = "POST_ACTIVITY";
 
 export const getCountries = (name = "") => {
   if (!name) {
@@ -43,3 +46,10 @@ export const getCountry = (id) => {
       .catch((err) => console.log(err));
   };
 };
+
+export const createActivity = (payload) => {
+  return async function() {
+    const post = await axios.post("http://localhost:3001/activities/addActivity", payload);
+    return post;
+  }
+}

@@ -2,6 +2,7 @@ import {
   GET_COUNTRIES,
   GET_COUNTRIES_BY_NAME,
   GET_COUNTRY,
+  POST_ACTIVITY
 } from "./actions";
 
 const initialState = {
@@ -27,6 +28,10 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         country: action.payload,
       };
+    case POST_ACTIVITY:
+      return {
+        ...state,
+      }
     default:
       return {
         ...state,

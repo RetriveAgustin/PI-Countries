@@ -1,25 +1,34 @@
 import style from "./NewActivity.module.css";
 import axios from "axios";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createActivity, getCountries } from "../../redux/actions";
 
 const NewActivity = () => {
   const [actividad, setActividad] = useState({
-    nombre: "",
-    dificultad: "",
-    duracion: "",
-    temporada: "",
+    name: "",
+    difficulty: "",
+    duration: "",
+    season: "",
+    countries: [],
   });
   const [error, setError] = useState({
-    nombre: false,
-    dificultad: false,
-    duracion: false,
-    temporada: false,
+    name: false,
+    difficulty: false,
+    duration: false,
+    season: false,
   });
   const [message, setMessage] = useState(false);
 
-  const country = useSelector((state) => state.country);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCountries());
+  },[]);
+
+  const countries = useSelector((state) => state.countries).sort((a,b)=> a.name>b.name? 1:-1);
+  // countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
+
+  console.log(countries);
 
   function handlerChange({ target }) {
     setActividad({
@@ -43,54 +52,54 @@ const NewActivity = () => {
     e.preventDefault();
 
     const newError = {
-      nombre: false,
-      dificultad: false,
-      duracion: false,
-      temporada: false,
+      name: false,
+      difficulty: false,
+      duration: false,
+      season: false,
+      countries: false,
     };
     var hasError = false;
 
-    if (!actividad.nombre) {
+    if (!actividad.name) {
       hasError = true;
-      newError.nombre = true;
+      newError.name = true;
     }
 
-    if (!actividad.duracion) {
+    if (!actividad.duration) {
       hasError = true;
-      newError.duracion = true;
+      newError.duration = true;
     }
 
-    if (!actividad.dificultad) {
+    if (!actividad.difficulty) {
       hasError = true;
-      newError.dificultad = true;
+      newError.difficulty = true;
     }
 
-    if (!actividad.temporada) {
+    if (!actividad.season) {
       hasError = true;
-      newError.temporada = true;
+      newError.season = true;
     }
 
-    console.log(actividad);
+    if (!actividad.countries.length) {
+      hasError = true;
+      newError.countries = true;
+    }
 
     if (hasError) setError(newError);
+    
 
     if (!hasError) {
       try {
-        await axios.post("http://localhost:3001/activities/addActivity", {
-          name: actividad.nombre,
-          difficulty: actividad.dificultad,
-          duration: actividad.duracion,
-          season: actividad.temporada,
-          country: country.id,
-        });
+        dispatch(createActivity(actividad));
+
         setMessage(true);
         setTimeout(() => setMessage(false), 2000);
         setActividad({
-          nombre: "",
-          dificultad: "",
+          name: "",
+          difficulty: "",
           season: "",
-          duracion: "",
-          temporada: "",
+          duration: "",
+          season: "",
         });
       } catch (error) {
         window.alert(error.message);
@@ -98,29 +107,36 @@ const NewActivity = () => {
     }
   };
 
+  const handleSelect = (e) => {
+    setActividad({
+      ...actividad,
+      countries: [...actividad.countries, e.target.value]
+    })
+  }
+
   return (
     <>
       <div className={style.container}>
-      <NavLink to={`countries/${country.id}`} className={style.link}><button className={style.button}>Volver</button></NavLink>
+        {/* <NavLink to={`countries/${country.id}`} className={style.link}><button className={style.button}>Volver</button></NavLink> */}
         <form className={style.form} onSubmit={submitHandler}>
           <div className={style.two_fields}>
             <div className={style.input_field}>
-              <label htmlFor="nombre">Nombre </label>
+              <label htmlFor="name">Nombre </label>
               <input
                 type="text"
-                id="nombre"
-                name="nombre"
-                value={actividad.nombre}
+                id="name"
+                name="name"
+                value={actividad.name}
                 onChange={handlerChange}
                 onFocus={handlerChange}
                 style={{
-                  border: error.nombre
+                  border: error.name
                     ? "1.5px solid red"
                     : "1.5px solid transparent",
                   outline: "none",
                 }}
               />
-              {error.nombre && (
+              {error.name && (
                 <span className={style.span_error}>
                   Nombre no puede estar vacio!
                 </span>
@@ -128,24 +144,50 @@ const NewActivity = () => {
             </div>
 
             <div className={style.input_field}>
-              <label htmlFor="duracion">Duración (en días) </label>
+              <label htmlFor="duration">Duración (en días) </label>
               <input
                 type="number"
-                id="duracion"
-                name="duracion"
-                value={actividad.duracion}
+                id="duration"
+                name="duration"
+                value={actividad.duration}
                 onChange={handlerChange}
                 onFocus={handlerChange}
                 style={{
-                  border: error.duracion
+                  border: error.duration
                     ? "1.5px solid red"
                     : "1.5px solid transparent",
                   outline: "none",
                 }}
               />
-              {error.duracion && (
+              {error.duration && (
                 <span className={style.span_error} style={{ right: "-265px" }}>
                   Duracion no puede estar vacio!
+                </span>
+              )}
+            </div>
+
+            <div className={style.input_field}>
+              <label htmlFor="countries">País/es</label>
+              <input
+                type="text"
+                id="countries"
+                name="countries"
+                value={actividad.countries}
+                style={{
+                  border: error.countries
+                    ? "1.5px solid red"
+                    : "1.5px solid transparent",
+                  outline: "none",
+                }}
+              />
+              <select onChange={e => handleSelect(e)}>
+                {
+                  countries.map((country) => <option value={country.id}>{country.name}</option>)
+                }                
+              </select>
+              {error.duration && (
+                <span className={style.span_error} style={{ right: "-265px"}}>
+                  País/es no puede estar vacio!
                 </span>
               )}
             </div>
@@ -158,7 +200,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="pacifica"
-                name="dificultad"
+                name="difficulty"
                 value="Pacifica"
                 onChange={handlerChange}
               />
@@ -169,7 +211,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="inspiradora"
-                name="dificultad"
+                name="difficulty"
                 value="Inspiradora"
                 onChange={handlerChange}
               />
@@ -180,7 +222,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="desafio"
-                name="dificultad"
+                name="difficulty"
                 value="Desafío"
                 onChange={handlerChange}
               />
@@ -191,7 +233,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="aventura"
-                name="dificultad"
+                name="difficulty"
                 value="Aventura"
                 onChange={handlerChange}
               />
@@ -202,14 +244,14 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="Actividad Peligrosa"
-                name="dificultad"
+                name="difficulty"
                 value="Actividad Peligrosa"
                 onChange={handlerChange}
               />
               <label htmlFor="Actividad Peligrosa">Actividad Peligrosa</label>
             </div>
           </div>
-          {error.dificultad && (
+          {error.difficulty && (
             <span
               className={style.span_error}
               style={{ bottom: "155px", right: "-230px" }}
@@ -218,7 +260,7 @@ const NewActivity = () => {
             </span>
           )}
 
-          <br style={{marginTop: '15px'}}></br>
+          <br style={{ marginTop: "15px" }}></br>
 
           <label>Temporada:</label>
           <div className={style.dificulty_container}>
@@ -226,7 +268,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="invierno"
-                name="temporada"
+                name="season"
                 value="Invierno"
                 onChange={handlerChange}
               />
@@ -237,7 +279,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="otoño"
-                name="temporada"
+                name="season"
                 value="Otoño"
                 onChange={handlerChange}
               />
@@ -248,7 +290,7 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="primavera"
-                name="temporada"
+                name="season"
                 value="Primavera"
                 onChange={handlerChange}
               />
@@ -259,14 +301,14 @@ const NewActivity = () => {
               <input
                 type="radio"
                 id="Veranoa"
-                name="temporada"
+                name="season"
                 value="Verano"
                 onChange={handlerChange}
               />
               <label htmlFor="Verano">Verano</label>
             </div>
           </div>
-          {error.dificultad && (
+          {error.difficulty && (
             <span
               className={style.span_error}
               style={{ bottom: "80px", right: "-245px" }}
@@ -280,7 +322,10 @@ const NewActivity = () => {
             value="Crear Actividad"
             className={style.btn_submit}
             style={
-              error.duracion || error.nombre || error.dificultad || error.temporada
+              error.duration ||
+              error.name ||
+              error.difficulty ||
+              error.season
                 ? {
                     cursor: "not-allowed",
                   }
