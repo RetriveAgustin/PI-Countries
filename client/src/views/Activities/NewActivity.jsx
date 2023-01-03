@@ -1,16 +1,17 @@
 import style from "./NewActivity.module.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createActivity, getCountries } from "../../redux/actions";
+import { useParams } from "react-router-dom";
 
 const NewActivity = () => {
+  const param = useParams()
   const [actividad, setActividad] = useState({
     name: "",
     difficulty: "",
     duration: "",
     season: "",
-    countries: [],
+    countries: param.id === "create" ? [] : [param.id],
   });
   const [error, setError] = useState({
     name: false,
@@ -27,8 +28,6 @@ const NewActivity = () => {
 
   const countries = useSelector((state) => state.countries).sort((a,b)=> a.name>b.name? 1:-1);
   // countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
-
-  console.log(countries);
 
   function handlerChange({ target }) {
     setActividad({
@@ -100,6 +99,7 @@ const NewActivity = () => {
           season: "",
           duration: "",
           season: "",
+          countries: param.id === "create" ? [] : [param.id],
         });
       } catch (error) {
         window.alert(error.message);

@@ -34,7 +34,7 @@ const Country = (props) => {
       </div>
 
       <div className={style.actividades}>
-        <NavLink to="/new-activity" > <button>Agregá una actividad</button> </NavLink>
+        <NavLink to={"/new-activity/" + country.id} > <button>Agregá una actividad</button> </NavLink>
       </div>
 
       <div className={style.listaActividades}>

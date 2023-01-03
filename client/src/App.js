@@ -17,7 +17,7 @@ function App() {
       <Route exact path="/countries/:id" component={Country} />
       <Route exact path="/activities" component={Activities} />
       <Route exact path="/activity" component={Activity} />
-      <Route exact path="/new-activity" component={NewActivity} />
+      <Route exact path="/new-activity/:id" component={NewActivity} />
     </div>
   );
 }
