@@ -4,6 +4,7 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRIES_BY_NAME = "GET_COUNTRIES_BY_NAME";
 export const GET_COUNTRY = "GET_COUNTRY";
 export const POST_ACTIVITY = "POST_ACTIVITY";
+export const GET_ACTIVITIES = "GET_ACTIVITIES";
 
 export const getCountries = (name = "") => {
   if (!name) {
@@ -52,4 +53,18 @@ export const createActivity = (payload) => {
     const post = await axios.post("http://localhost:3001/activities/addActivity", payload);
     return post;
   }
+}
+
+export const getActivities = () => {
+  return function (dispatch) {
+    fetch("http://localhost:3001/activities")
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({
+          type: GET_ACTIVITIES,
+          payload: data,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 }

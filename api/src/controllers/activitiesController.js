@@ -31,6 +31,9 @@ const findActivity = async (req, res) => {
         {
           model: Country,
           attributes: ["id", "name", "continent"],
+          through: {
+            attributes: []
+          }
         },
       ],
     });

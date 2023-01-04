@@ -18,6 +18,7 @@ const SearchBar = () => {
         placeholder="Coloca aquí el nombre de la país"
         key="name"
         onChange={changeHandler}
+        style={{ marginRight: "60px", marginLeft: "60px" }}
       />
     </form>
   );

@@ -19,23 +19,33 @@ const Countries = () => {
     dispatch(getCountries(""));
   }, []);
   
-  // ORDENADO
-  const [order, setOrder] = useState("asc");
+  // ORDENADO ALFABÉTICO
+  const [order, setOrder] = useState("alfAsc");
   
-  if(order === 'asc' && typeof(countries) !== "string"){
+  if(order === 'alfAsc' && typeof(countries) !== "string"){
     countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
   }
-  else if(typeof(countries) !== "string")
+  else if(order === "alfDes" && typeof(countries) !== "string")
     countries = countries.sort((a,b)=> a.name<b.name? 1:-1);
+  else if(order === "popAsc" && typeof(countries) !== "string")
+    countries = countries.sort((a,b)=> a.population<b.population? 1:-1);
+  else if(typeof(countries) !== "string")
+    countries = countries.sort((a,b)=> a.population>b.population? 1:-1);
   
   const countriesToShow = countries.slice(startPos, endPos);
+  
   return (
     <div>
       <div className={styles.header}>
-        <SearchBar />
         <p>Orden Alfabético:</p>
-        <button onClick={()=>setOrder("asc")}>Ascendente</button>
-        <button onClick={()=>setOrder("des")}>Descendente</button>
+        <button onClick={()=>setOrder("alfAsc")}>Ascendente</button>
+        <button onClick={()=>setOrder("alfDes")}>Descendente</button>
+
+        <SearchBar />
+
+        <p>Ordernar por Población:</p>
+        <button onClick={()=>setOrder("popAsc")}>Mayor-Menor</button>
+        <button onClick={()=>setOrder("popDes")}>Menor-Mayor</button>
       </div>
       <div className={styles.container}>
         <h2>Listado de Países</h2>

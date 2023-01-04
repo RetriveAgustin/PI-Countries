@@ -91,7 +91,17 @@ const findCountry = async (id) => {
 };
 
 const getAllActivities = async () => {
-  const dbActivities = await Activity.findAll();
+  const dbActivities = await Activity.findAll({
+    include: [
+      {
+        model: Country,
+        atributes: ["id", "name"],
+        through: {
+          atributes: []
+        }
+      }
+    ]
+  });
   return dbActivities;
 };
 

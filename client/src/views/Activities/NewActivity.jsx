@@ -5,14 +5,19 @@ import { createActivity, getCountries } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 
 const NewActivity = () => {
+  //PARAM DEFINE SI EL FORM FUE LLAMADO DESDE UNA CARD O DESDE EL NAV
   const param = useParams()
   const [actividad, setActividad] = useState({
     name: "",
     difficulty: "",
     duration: "",
     season: "",
+    //si params devuelve "create" fue llamada desde el NavBar
+    //si no, params contiene el id de un país
     countries: param.id === "create" ? [] : [param.id],
   });
+
+  //MANEJO DE ERRORES
   const [error, setError] = useState({
     name: false,
     difficulty: false,
@@ -21,13 +26,18 @@ const NewActivity = () => {
   });
   const [message, setMessage] = useState(false);
 
+  //traigo los países para el select
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCountries());
   },[]);
 
-  const countries = useSelector((state) => state.countries).sort((a,b)=> a.name>b.name? 1:-1);
-  // countries = countries.sort((a,b)=> a.name>b.name? 1:-1);
+  //los ordeno para que queden las opciones en orden alfabético
+  let countries = useSelector((state) => state.countries)
+    .sort((a,b)=> a.name>b.name? 1:-1);
+  countries.unshift({
+    id: null,
+    name: "Seleccione un país"});
 
   function handlerChange({ target }) {
     setActividad({
@@ -108,10 +118,12 @@ const NewActivity = () => {
   };
 
   const handleSelect = (e) => {
-    setActividad({
-      ...actividad,
-      countries: [...actividad.countries, e.target.value]
-    })
+    if(e.target.value !== "Seleccione un país"){
+      setActividad({
+        ...actividad,
+        countries: [...actividad.countries, e.target.value]
+      })
+    }
   }
 
   return (
