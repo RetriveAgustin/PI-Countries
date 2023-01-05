@@ -87,7 +87,10 @@ const Activities = () => {
         />
       </div>
 
-      <div>
+      <div style={{
+        width: "99%",
+        margin: "0 auto"
+      }}>
         <table>
           <tr>
             <th>Nombre</th>

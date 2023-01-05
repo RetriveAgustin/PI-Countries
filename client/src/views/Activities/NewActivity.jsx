@@ -23,6 +23,7 @@ const NewActivity = () => {
     difficulty: false,
     duration: false,
     season: false,
+    countries: false,
   });
   const [message, setMessage] = useState(false);
 
@@ -129,7 +130,7 @@ const NewActivity = () => {
   return (
     <>
       <div className={style.container}>
-        <form className={style.form} onSubmit={submitHandler}>
+        <form className={style.form} onSubmit={submitHandler} style={{marginTop: "20px"}}>
           <div className={style.two_fields}>
             <div className={style.input_field}>
               <label htmlFor="name">Nombre </label>
@@ -158,6 +159,7 @@ const NewActivity = () => {
               <label htmlFor="duration">Duración (en días) </label>
               <input
                 type="number"
+                min="1"
                 id="duration"
                 name="duration"
                 value={actividad.duration}
@@ -196,7 +198,7 @@ const NewActivity = () => {
                   countries.map((country) => <option value={country.id}>{country.name}</option>)
                 }                
               </select>
-              {error.duration && (
+              {error.countries && (
                 <span className={style.span_error} style={{ right: "-265px"}}>
                   País/es no puede estar vacio!
                 </span>
