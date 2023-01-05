@@ -129,7 +129,6 @@ const NewActivity = () => {
   return (
     <>
       <div className={style.container}>
-        {/* <NavLink to={`countries/${country.id}`} className={style.link}><button className={style.button}>Volver</button></NavLink> */}
         <form className={style.form} onSubmit={submitHandler}>
           <div className={style.two_fields}>
             <div className={style.input_field}>
