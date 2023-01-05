@@ -191,7 +191,7 @@ const NewActivity = () => {
                   outline: "none",
                 }}
               />
-              <select onChange={e => handleSelect(e)}>
+              <select onChange={e => handleSelect(e)} style={{width: "300px"}}>
                 {
                   countries.map((country) => <option value={country.id}>{country.name}</option>)
                 }                

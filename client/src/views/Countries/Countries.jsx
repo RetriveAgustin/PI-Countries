@@ -61,8 +61,8 @@ const Countries = () => {
         <button onClick={()=>setOrder("popDes")}>Menor-Mayor</button>
       </div>
 
-      <div>
-        <p>Seleccione un Continente</p>
+      <div className={styles.continentFilter}>
+        <p style={{margin: "auto 0", marginRight: "10px"}}>Seleccione un Continente</p>
         <select name="continent" onChange={handleContinent} id="continent">
           <option value="">Sin Filtro</option>
           <option value="Africa">Africa</option>
@@ -70,7 +70,7 @@ const Countries = () => {
           <option value="South America">America del Sur</option>
           <option value="Asia">Asia</option>
           <option value="Europe">Europa</option>
-          <option value="Oceanía">Oceanía</option>
+          <option value="Oceania">Oceanía</option>
         </select>
       </div>
 

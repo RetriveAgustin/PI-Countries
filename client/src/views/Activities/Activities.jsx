@@ -1,3 +1,4 @@
+import style from "./Activities.module.css";
 import ActivitiesContainer from "../../components/ActivitiesCountainer";
 import Paginated from "../../components/Paginated";
 
@@ -56,24 +57,35 @@ const Activities = () => {
 
   return (
     <div className="activitiesContainer">
-      <div>
-        <input
-          type="text"
-          placeholder="Coloca aquí el nombre del país"
-          key="name"
-          onChange={searchChangeHandle}
-        />
+      <div className={style.header}>
+        <div style={{margin: "auto 0", marginRight: "10px"}}>
+          <input
+            type="text"
+            placeholder="Coloca aquí el nombre del país"
+            key="name"
+            onChange={searchChangeHandle}
+            className={style.input}
+          />
+        </div>
+
+        <div className={style.order}>
+          <p>Orden Alfabético:</p>
+          <button onClick={() => setOrder("asc")}>Ascendente</button>
+          <button onClick={() => setOrder("des")}>Descendente</button>
+        </div>
       </div>
 
-      <p>Orden Alfabético:</p>
-      <button onClick={() => setOrder("asc")}>Ascendente</button>
-      <button onClick={() => setOrder("des")}>Descendente</button>
-
-      <Paginated
-        actualPage={page}
-        setPage={setPage}
-        pages={activities.length / 15}
-      />
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        marginBottom: "20px"
+      }}>
+        <Paginated
+          actualPage={page}
+          setPage={setPage}
+          pages={activities.length / 15}
+        />
+      </div>
 
       <div>
         <table>

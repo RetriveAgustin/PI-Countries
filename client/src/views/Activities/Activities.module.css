@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  flex-direction: ;
+  justify-content: center;
+}
+
+.order {
+  display: flex;
+  justify-content: center;
+}
+.order button {
+  width: fit-content;
+    height: 30px;
+    margin: auto 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28313a;
+  color: #eaeaea;
+  cursor: pointer;
+  border: 1px solid #c3b388;
+  transition: 0.1s;
+}
+
+.input {
+  width: 400px;
+  height: 25px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28313a;
+  color: #eaeaea;
+  cursor: pointer;
+  border: 1px solid #c3b388;
+}

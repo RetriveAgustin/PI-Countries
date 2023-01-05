@@ -35,3 +35,9 @@
   border: 1px solid #c3b388;
   transition: 0.1s;
 }
+
+.continentFilter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
