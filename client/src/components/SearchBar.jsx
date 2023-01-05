@@ -15,7 +15,7 @@ const SearchBar = () => {
       <input
         className={style.buscador}
         type="text"
-        placeholder="Coloca aquí el nombre de la país"
+        placeholder="Coloca aquí el nombre del país"
         key="name"
         onChange={changeHandler}
         style={{ marginRight: "60px", marginLeft: "60px" }}

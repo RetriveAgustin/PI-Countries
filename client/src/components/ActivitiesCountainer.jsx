@@ -7,8 +7,8 @@ const ActivitiesContainer = ({ activity }) => {
       <td>{activity.difficulty}</td>
       <td>{activity.duration}</td>
       <td>{activity.season}</td>
-      <NavLink to={`/countries/${activity.crountryId}`}>
-        <td>{activity.crountryName}</td>
+      <NavLink to={`/countries/${activity.countryId}`}>
+        <td>{activity.countryName}</td>
       </NavLink>
     </tr>
   );

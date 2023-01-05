@@ -14,10 +14,23 @@ const Countries = () => {
   const startPos = endPos - (page===1? 9: 10);
   var countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
+  console.log(countries);
   
   useEffect(() => {
     dispatch(getCountries(""));
   }, []);
+
+  // FILTRADO POR CONTINENTE
+  const [continent, setContinent] = useState("");
+  const handleContinent = (e) => {
+    console.log(e.target.value);
+    setContinent(e.target.value)
+  }
+  if(continent)
+    countries = countries.filter(country => {
+      return country.continent[0] === continent;
+    });
+  console.log(countries);
   
   // ORDENADO ALFABÉTICO
   const [order, setOrder] = useState("alfAsc");
@@ -47,6 +60,20 @@ const Countries = () => {
         <button onClick={()=>setOrder("popAsc")}>Mayor-Menor</button>
         <button onClick={()=>setOrder("popDes")}>Menor-Mayor</button>
       </div>
+
+      <div>
+        <p>Seleccione un Continente</p>
+        <select name="continent" onChange={handleContinent} id="continent">
+          <option value="">Sin Filtro</option>
+          <option value="Africa">Africa</option>
+          <option value="North America">America del Norte</option>
+          <option value="South America">America del Sur</option>
+          <option value="Asia">Asia</option>
+          <option value="Europe">Europa</option>
+          <option value="Oceanía">Oceanía</option>
+        </select>
+      </div>
+
       <div className={styles.container}>
         <h2>Listado de Países</h2>
         <Paginated actualPage={page} setPage={setPage} pages={(countries?.length/9.99)}/>

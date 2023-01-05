@@ -6,6 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../../redux/actions";
 
 const Activities = () => {
+  const [searchBar, setSearchBar] = useState("");
+  const searchChangeHandle = (e) => {
+    setSearchBar(e.target.value);
+  }
+
   const [page, setPage] = useState(1);
   const endPos =page * 15 ;
   const startPos = endPos - 15;
@@ -17,7 +22,7 @@ const Activities = () => {
           difficulty: activity.difficulty,
           duration: activity.duration,
           season: activity.season,
-          crountryName: country.name,
+          countryName: country.name,
           countryId: country.id,
         };
       });
@@ -25,12 +30,11 @@ const Activities = () => {
   );
 
   var activities = [];
-
-  for (var i = 0; i < activitiesAux.length; i++) {
-    activities = [...activities, ...activitiesAux[i]];
-  }
-
-  console.log(activities);
+  activitiesAux.forEach((activitiesA)=> activities = [...activities, ...activitiesA]);
+  if(searchBar)
+    activities = activities.filter(activity => {
+      return activity.countryName.slice(0, searchBar.length).toLowerCase() === searchBar.toLocaleLowerCase();
+    });
 
   const dispatch = useDispatch();
 
@@ -52,6 +56,15 @@ const Activities = () => {
 
   return (
     <div className="activitiesContainer">
+      <div>
+        <input
+          type="text"
+          placeholder="Coloca aquí el nombre del país"
+          key="name"
+          onChange={searchChangeHandle}
+        />
+      </div>
+
       <p>Orden Alfabético:</p>
       <button onClick={() => setOrder("asc")}>Ascendente</button>
       <button onClick={() => setOrder("des")}>Descendente</button>
